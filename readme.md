@@ -6,6 +6,8 @@
  - Primes
  - binary search
  - fizzbuzz a few ways
+ - fibonacci recursive
+ - fibonacci memoized
  - trie
 
 ### Kata
