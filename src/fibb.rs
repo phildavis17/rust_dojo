@@ -17,9 +17,11 @@ fn fibb_recursive(n: &usize) -> Vec<usize> {
     todo!()
 }
 
-pub struct FibMemo{
-    memo: HashMap<usize, usize>
-}
+// pub struct FibMemo{
+//     memo: HashMap<usize, usize>
+// }
+
+type FibMemo = HashMap<usize, usize>;
 
 impl Default for FibMemo {
     fn default() -> Self {

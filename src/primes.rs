@@ -1,7 +1,7 @@
 // use core::num;
 use std::collections::{HashMap, HashSet};
 
-fn main() {
+pub fn primes_main() {
     println!("{}", is_prime(&11));
     println!("{:?}", primes_up_to(&11));
     println!("{}", 11 % 7);
@@ -41,16 +41,12 @@ fn is_prime(n: &usize) -> bool {
 fn over_or_under_six(limit: &usize) -> HashMap<usize, usize> {
     let mut count = HashMap::from([(1, 0), (5, 0)]);
     for p in &primes_up_to(&limit)[2..] {
-        let mod_six = p % 6;
-        match count.get_mut(&mod_six) {
-            Some(c) => *c += 1,
-            None => panic!("Math is wrong!"),
+        if let Some(c) = count.get_mut(&(p % 6)) {
+            *c += 1;
         }
     }
     return count;
 }
-
-
 
 #[cfg(test)]
 mod tests {

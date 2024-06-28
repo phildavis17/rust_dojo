@@ -2,5 +2,6 @@ mod primes;
 mod fibb;
 
 fn main() {
-    println!("Hello, world!");
+    primes::primes_main();
+    // println!("Hello, world!");
 }
