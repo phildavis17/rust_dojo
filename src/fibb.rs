@@ -3,7 +3,7 @@ use std::collections::HashMap;
 fn nth_fibb(n: &usize) -> usize {
     let mut a = 0;
     let mut b = 1;
-    if [a, b].contains(&n) {
+    if [a, b].contains(n) {
         return *n
     } else {
         for _ in 2..=*n {
@@ -13,27 +13,29 @@ fn nth_fibb(n: &usize) -> usize {
     }
 }
 
-fn fibb_recursive(n: &usize) -> Vec<usize> {
-    todo!()
-}
-
-// pub struct FibMemo{
-//     memo: HashMap<usize, usize>
-// }
-
-type FibMemo = HashMap<usize, usize>;
-
-impl Default for FibMemo {
-    fn default() -> Self {
-        Self{
-            memo: HashMap::from([(0, 0), (1, 1)]),
-        }
+fn fibb_recursive(n: usize) -> usize {
+    if n == 0 || n == 1{
+        return n;
+    } else {
+        return fibb_recursive(n - 1) + fibb_recursive(n - 2);
     }
 }
 
-fn fibb_memoized(n: &usize, memo: FibMemo){
-    todo!()
+enum FibMemo {
+    Empty,
+    Is(HashMap<u32, u32>),
 }
+
+impl Default for FibMemo {
+    fn default() -> Self {
+        FibMemo::Is(HashMap::from([(0, 0), (1, 1)]))
+    }
+}
+
+
+// fn fibb_memoized(n: &usize, memo: &mut FibMemo){
+//     todo!
+// }
 
 #[cfg(test)]
 mod tests{
@@ -46,6 +48,7 @@ mod tests{
     #[test_case(3, 2; "Three")]
     #[test_case(10, 55; "Ten")]
     fn test_nth_fibb(n: usize, expected: usize) {
-        assert_eq!(nth_fibb(&n), expected)
+        assert_eq!(nth_fibb(&n), expected);
+        assert_eq!(fibb_recursive(n), expected);
     }
 }
