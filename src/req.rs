@@ -2,8 +2,12 @@ use reqwest::Error;
 use std::collections::HashMap;
 
 pub async fn get_check() -> Result<(), Error> {
-    let url = "http://google.com";
-    let body = reqwest::get(url)
+    let url = "https://api.weather.gov/alerts/types";
+    let client = reqwest::Client::builder()
+        .user_agent("TESTING APIs")
+        .build()?;
+    let body = client.get(url)
+        .send()
         .await?
         .text()
         .await?;
